@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { LEVELS } from "../../models/levels.enum";
 import { Task } from "../../models/task.class";
 import TaskComponent from "../pure/task";
+import '../../styles/task.scss';
 
 function TaskListComponent() {
   const defaultTask = new Task(
@@ -30,7 +31,7 @@ function TaskListComponent() {
 
   return (
     <>
-      <h1>Tus Tareas:</h1>
+      <h1 className="tasks-title">Tus Tareas:</h1>
       {/* aplicar un for/map para renderizar un UL */}
       <TaskComponent task={defaultTask}></TaskComponent>
     </>
