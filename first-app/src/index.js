@@ -1,5 +1,7 @@
 import React from 'react';
 import {createRoot} from 'react-dom/client';
+import 'bootstrap/dist/css/bootstrap.css';
+// Importante: los estilos, deben ir debajo
 import './styles/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
