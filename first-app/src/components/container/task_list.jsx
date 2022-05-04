@@ -30,10 +30,8 @@ function TaskListComponent() {
 
   // Control del ciclo de vida
   useEffect(() => {
-    console.log("..");
     setLoading(false);
     return () => {
-      console.log("E..");
     };
   }, [tasks]);
 
@@ -41,6 +39,13 @@ function TaskListComponent() {
     const index = tasks.indexOf(task);
     const tempTasks = [...tasks];
     tempTasks[index].completed = !tempTasks[index].completed;
+    setTask(tempTasks);
+  }
+
+  const deleteTask = (task) => {
+    const index = tasks.indexOf(task);
+    const tempTasks = [...tasks];
+    tempTasks.splice(index, 1);
     setTask(tempTasks);
   }
 
@@ -75,7 +80,7 @@ function TaskListComponent() {
                   {/* todo: iterar sobre una lista de tareas */}
                   {tasks.map((item, index) => {
                     return (
-                      <TaskComponent complete={completeTask} key={index} task={item}></TaskComponent>
+                      <TaskComponent deleteTask={deleteTask} complete={completeTask} key={index} task={item}></TaskComponent>
                     );
                   })}
                 </tbody>
