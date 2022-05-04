@@ -36,6 +36,14 @@ function TaskListComponent() {
       console.log("E..");
     };
   }, [tasks]);
+
+  function completeTask(task){
+    const index = tasks.indexOf(task);
+    const tempTasks = [...tasks];
+    tempTasks[index].completed = !tempTasks[index].completed;
+    setTask(tempTasks);
+  }
+
   return (
     <>
       <div className="col-12">
@@ -52,10 +60,6 @@ function TaskListComponent() {
             {/* card body */}
             <div
               className="card-body"
-              style={{
-                position: "relative",
-                height: "400px",
-              }}
               data-mdb-perfect-scrollbar="true"
             >
               <table className="table">
@@ -71,7 +75,7 @@ function TaskListComponent() {
                   {/* todo: iterar sobre una lista de tareas */}
                   {tasks.map((item, index) => {
                     return (
-                      <TaskComponent key={index} task={item}></TaskComponent>
+                      <TaskComponent complete={completeTask} key={index} task={item}></TaskComponent>
                     );
                   })}
                 </tbody>
