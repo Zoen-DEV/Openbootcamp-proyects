@@ -3,16 +3,29 @@ import { LEVELS } from "../../models/levels.enum";
 import { Task } from "../../models/task.class";
 import TaskComponent from "../pure/task";
 import "../../styles/task.scss";
+import TaskForm from "../pure/forms/taskForm";
 
 function TaskListComponent() {
-  const defaultTask = new Task(
-    "Ejemplo",
-    "Descripcion por defecto",
+  const defaultTask1 = new Task(
+    "Ejemplo1",
+    "Descripcion por defecto1",
     false,
     LEVELS.NORMAL
   );
+  const defaultTask2 = new Task(
+    "Ejemplo2",
+    "Descripcion por defecto2",
+    true,
+    LEVELS.URGENTE
+  );
+  const defaultTask3 = new Task(
+    "Ejemplo3",
+    "Descripcion por defecto3",
+    true,
+    LEVELS.BLOCKING
+  );
   // Estado del componente
-  const [tasks, setTask] = useState([defaultTask]);
+  const [tasks, setTask] = useState([defaultTask1, defaultTask2, defaultTask3]);
   const [loading, setLoading] = useState(true);
 
   // Control del ciclo de vida
@@ -45,7 +58,7 @@ function TaskListComponent() {
               }}
               data-mdb-perfect-scrollbar="true"
             >
-              <table>
+              <table className="table">
                 <thead>
                   <tr>
                     <th scope="col">Titúlo</th>
@@ -56,10 +69,15 @@ function TaskListComponent() {
                 </thead>
                 <tbody>
                   {/* todo: iterar sobre una lista de tareas */}
-                  <TaskComponent task={defaultTask}></TaskComponent>
+                  {tasks.map((item, index) => {
+                    return (
+                      <TaskComponent key={index} task={item}></TaskComponent>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
+            <TaskForm></TaskForm>
           </div>
         </div>
       </div>
