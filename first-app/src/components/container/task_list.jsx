@@ -12,20 +12,8 @@ function TaskListComponent() {
     false,
     LEVELS.NORMAL
   );
-  const defaultTask2 = new Task(
-    "Ejemplo2",
-    "Descripcion por defecto2",
-    true,
-    LEVELS.URGENTE
-  );
-  const defaultTask3 = new Task(
-    "Ejemplo3",
-    "Descripcion por defecto3",
-    true,
-    LEVELS.BLOCKING
-  );
   // Estado del componente
-  const [tasks, setTask] = useState([defaultTask1, defaultTask2, defaultTask3]);
+  const [tasks, setTask] = useState([defaultTask1]);
   const [loading, setLoading] = useState(true);
 
   // Control del ciclo de vida
@@ -46,6 +34,12 @@ function TaskListComponent() {
     const index = tasks.indexOf(task);
     const tempTasks = [...tasks];
     tempTasks.splice(index, 1);
+    setTask(tempTasks);
+  }
+
+  const addTask = (task) => {
+    const tempTasks = [...tasks];
+    tempTasks.push(task);
     setTask(tempTasks);
   }
 
@@ -86,7 +80,7 @@ function TaskListComponent() {
                 </tbody>
               </table>
             </div>
-            <TaskForm></TaskForm>
+            <TaskForm add={addTask}></TaskForm>
           </div>
         </div>
       </div>
